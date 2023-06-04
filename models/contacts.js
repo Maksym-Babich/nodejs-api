@@ -46,7 +46,7 @@ const updateContact = async (id, { name, email, phone }) => {
     return null;
   }
   const updatedContact = {
-    id: nanoid(),
+    id,
     name,
     email,
     phone,
