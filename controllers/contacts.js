@@ -2,7 +2,8 @@ const Contact = require('../models/contact');
 const { HttpError, CtrlWrapper } = require('../utils');
 
 const getAllContacts = async (_, res) => {
-  const allContacts = await Contact.find();
+  const { _id: owner } = req.user;
+  const allContacts = await Contact.find({ owner }, '-createdAt -updatedAt');
   res.status(200).json(allContacts);
 };
 
@@ -25,7 +26,8 @@ const deleteContactById = async (req, res) => {
 };
 
 const addNewContact = async (req, res) => {
-  const result = await Contact.create(req.body);
+  const { _id: owner } = req.user;
+  const result = await Contact.create({ ...req.body, owner });
   res.status(201).json(result);
 };
 
