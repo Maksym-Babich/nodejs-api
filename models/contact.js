@@ -23,7 +23,7 @@ const ContactSchema = new Schema(
       required: true,
     },
   },
-  { vesrsionKey: false, timestamps: true }
+  { versionKey: false, timestamps: true }
 );
 
 ContactSchema.post('save', HandleMongooseError);
