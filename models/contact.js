@@ -17,8 +17,13 @@ const ContactSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+      required: true,
+    },
   },
-  { vesrsionKey: false, timestamps: true }
+  { versionKey: false, timestamps: true }
 );
 
 ContactSchema.post('save', HandleMongooseError);
